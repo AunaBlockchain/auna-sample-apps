@@ -1,0 +1,7 @@
+# Sample DApp API configuration file
+host: "0.0.0.0"
+port: "4000"
+timeout: "240000"
+root: "/"
+#
+apiInternalUrl: http://sample-internal:4001

@@ -1,0 +1,93 @@
+application: 
+  id: sample-node-app
+  name: sample-node-app
+  description: Node.js sample DApp
+  category: examples
+network: 
+  id: sample-network
+  name: sample-network
+  version: "2.0.0"
+  action: "some-action"
+  orderers: 
+  - nodes: 1
+    org: bcs-ordering
+    consensus: etcdraft
+  channels: 
+  - channel: my-channel
+    orgs:
+    - bcs
+  organizations:
+  - id: bcs
+    hosted: true
+  peers: 
+  - nodes: 2
+    org: bcs
+  chaincodes:
+  - smartcontract: test-go
+    channel: my-channel
+    orgs:
+    - bcs
+smartcontracts:
+- id: test-go
+  #OR('bcsMSP.member')
+  endorsement: '{"identities":[{"role":{"name":"member","mspId":"bcsMSP"}}],"policy":{"signed-by":0}}'
+  metadapath:
+  version: v1.0.0
+  path: smartcontracts/test-go
+  type: golang
+api:
+  internal:
+    - name: "sample-internal"
+      description: "Internal Api example"
+      runtime:
+        image: "registry.bcs.cl/baas/sample-internal:v1.0.0-node14"  
+        type: "node-ts"
+        version: "14"
+      host: "some-host"
+      path: "apis/internal/sample-internal"
+      port: "4001"
+      env:
+        - name: "SOME_VAR"
+          value: "someValue"
+      protocol: "http"
+      report: {}
+      tasks: {}
+      cache: {}
+      mailer: {}
+      metrics:
+        enabled: false
+        port: 8000
+        endpoint: "/metrics"
+      permissions: []
+  external:
+    - name: "sample-external"
+      description: "External Api example"
+      runtime:
+        image: "registry.bcs.cl/baas/sample-external:v1.0.0-node14"
+        type: "node-ts"
+        version: "14"
+      host: "some-host"
+      path: "apis/external/sample-external"
+      port: "4000"
+      env:
+        - name: "SOME_OTHER_VAR"
+          value: "anotherValue"
+      protocol: "http"
+      report: {}
+      tasks: {}
+      cache: {}
+      mailer: {}
+      metrics:
+        enabled: false
+        port: 8000
+        endpoint: "/metrics"
+      permissions: []
+cache : []
+tasks:
+  - tasktag: "sample-task"
+    task: "curl --fail -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{}' 'http://sample-interal:4001/sample-task'"
+    category: "examples"
+    description: "Example process that runs at 18:30 every week day Monday to Friday"
+    cron: "30 18 * * 1-5"
+datasource: []
+env: []
