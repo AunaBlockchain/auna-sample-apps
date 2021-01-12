@@ -1,11 +1,11 @@
 application: 
-  id: sample-node-app
-  name: sample-node-app
-  description: Node.js sample DApp
+  id: sample-node-app-01
+  name: sample-node-app-01
+  description: Adi Node.js sample DApp
   category: examples
 network: 
-  id: sample-network
-  name: sample-network
+  id: sample-network-01
+  name: sample-network-01
   version: "2.0.0"
   action: "some-action"
   orderers: 
@@ -37,10 +37,10 @@ smartcontracts:
   type: golang
 api:
   internal:
-    - name: "sample-internal"
+    - name: "sample-internal-01"
       description: "Internal Api example"
       runtime:
-        image: "registry.bcs.cl/baas/sample-internal:v1.0.0-node14"  
+        image: ""  
         type: "node-ts"
         version: "14"
       host: "some-host"
@@ -60,10 +60,10 @@ api:
         endpoint: "/metrics"
       permissions: []
   external:
-    - name: "sample-external"
+    - name: "sample-external-01"
       description: "External Api example"
       runtime:
-        image: "registry.bcs.cl/baas/sample-external:v1.0.0-node14"
+        image: ""
         type: "node-ts"
         version: "14"
       host: "some-host"
