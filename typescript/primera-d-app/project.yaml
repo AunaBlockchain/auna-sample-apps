@@ -1,0 +1,78 @@
+---
+application: 
+  id: "primera-d-app-isv" #Reemplaze por su identificador de ISV
+  name: "primera-d-app"
+  description: "Example d-app with Typescript language"
+  category: "d-app-auna-examples"
+network: 
+  id: "primerared"
+  name: "primerared"
+  version: "1.0.0"
+  action: "some-action"
+  orderers: 
+    - nodes: 1
+      org: "bcs-ordering"
+      consensus: etcdraft
+  channels: 
+  - channel: my-channel
+    orgs:
+    - "bcs"
+  organizations:
+  - id: bcs
+    hosted: true
+  peers: 
+  - nodes: 2
+    org: "bcs"
+smartcontracts: {}
+
+api:
+    internal:
+      - name: "api-int" #Nombre de la api interna
+        description: "Internal Api example" #Descripción de la API interna
+        runtime:
+          image: ""  #Este campo permite indicar que se ocupe una imagen docker en vez de construir una a partír del código.
+          type: "node-ts" #Indicar el runtime
+          version: "14"   #Indica la versión del runtime
+        host: "some.host" #Indica el host de la api
+        path: "apis/internal/api-int" #Ruta relativa hacia la API interna desde la carpeta Raiz del a D-App
+        port: "4002" #Puerto de escucha de la API interna
+        env: #Sección donde se puede definir variables de entorno para la API
+          - name: "SOME_VAR"
+            value: "someValue"
+        protocol: "http" #Protocolo a utilizadar
+        report: {}
+        task: {}
+        cache: {}
+        mailer: {}
+        metrics:
+          enabled: false
+          port: 8000
+          endpoint: "/metrics"
+        permissions: []
+    external: # Las API externas se configuran de igual que las APIs internas
+      - name: "api-ext"
+        description: "External Api example"
+        runtime:
+            image: ""  
+            type: "node-ts"
+            version: "14"
+        host: "some.host"
+        path: "apis/external/api-ext"
+        port: "4001" #Puerto de escucha de la API externa
+        env:
+          - name: "SOME_OTHER_VAR"
+            value: "anotherValue"
+        protocol: "http"
+        report: {}
+        task: {}
+        cache: {}
+        mailer: {}
+        metrics:
+          enabled: false
+          port: 8000
+          endpoint: "/metrics"
+        permissions: []
+cache: []
+tasks: []
+datasource: []
+env: []

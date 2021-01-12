@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Collateral" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d4ee6fff-5951-42fd-b982-47db41027ccf">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <parameter name="RutCliente" class="java.lang.String"/>
+    <parameter name="RutClientePrestamista" class="java.lang.String"/>
+    <parameter name="FondoClientePrestamista" class="java.lang.String"/>
+    <parameter name="Nemotecnico" class="java.lang.String"/>
+    <parameter name="Cantidad" class="java.lang.String"/>
+    <parameter name="Precio" class="java.lang.String"/>
+    <parameter name="Monto" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="79" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="31" width="555" height="30" uuid="1dc6e212-aa7c-4a6a-9cc0-6c3254745603"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Comprobante de Garantía Cliente]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="23" splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="16" splitType="Stretch"/>
+    </columnHeader>
+    <detail>
+        <band height="238" splitType="Stretch">
+            <staticText>
+                <reportElement x="20" y="10" width="160" height="20" uuid="ad1d7098-8f43-4df0-9c19-74c4cb7a7eb2"/>
+                <text><![CDATA[Rut Cliente:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="20" y="40" width="160" height="20" uuid="8188b687-0c51-41d2-ad76-359f357cebb1"/>
+                <text><![CDATA[Rut Cliente Prestamista:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="20" y="70" width="160" height="20" uuid="303e79c4-7471-4659-8462-d14f6b5537ec"/>
+                <text><![CDATA[Fondo Cliente Prestamista:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="20" y="100" width="160" height="20" uuid="73e6b6ba-cfff-41b5-8c0a-1d93a4f61023"/>
+                <text><![CDATA[Nemotecnico:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="20" y="130" width="160" height="20" uuid="9ef199a2-d443-4175-935a-0d7f997773c9"/>
+                <text><![CDATA[Cantidad:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="20" y="160" width="160" height="20" uuid="82bc8e44-241b-4480-92ba-c6d539807ae9"/>
+                <text><![CDATA[Precio:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="20" y="190" width="160" height="20" uuid="fe8dc76a-c8e6-4f59-9dcc-01b28e509d5e"/>
+                <text><![CDATA[Monto:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="180" y="10" width="160" height="20" uuid="fe10c357-95a7-4a47-9038-a020f0de4bc0"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{RutCliente}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="40" width="160" height="20" uuid="07008490-14c1-4ac4-ad1b-9d62bd5631cb"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{RutClientePrestamista}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="70" width="160" height="20" uuid="98f4c9f0-48d0-4856-98a3-7be741457b1d"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{FondoClientePrestamista}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="100" width="160" height="20" uuid="095cb157-c253-48c0-a9f0-b447e0a7a925"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Nemotecnico}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="130" width="160" height="20" uuid="5227f11a-d266-4853-85c9-d351101bd17e"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Cantidad}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="160" width="160" height="20" uuid="8b51a600-1aad-4d7f-a072-bf60af180e1d"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Precio}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="180" y="190" width="160" height="20" uuid="618ba59a-2c8f-44ec-b6e6-f1078ef0333c"/>
+                <textElement>
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{Monto}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="54" splitType="Stretch"/>
+    </pageFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>

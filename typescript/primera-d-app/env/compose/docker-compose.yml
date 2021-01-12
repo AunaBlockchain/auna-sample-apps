@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  auna-report-template-api:
+    image: "registry.aunablockchain.com/sdk/auna-report-template-mockup:v1.0.0-node14"
+    ports:
+      - "3070:3070"
+  auna-report-service-api:
+    image: "registry.aunablockchain.com/sdk/auna-report-service-mockup:v1.0.0-node14"
+    ports:
+      - "3071:3071"
+  auna-mail-template-api:
+    image: "registry.aunablockchain.com/sdk/auna-mail-template-mockup:v1.0.0-node14"
+    ports:
+      - "3051:3051"
+  auna-mail-service-api:
+    image: "registry.aunablockchain.com/sdk/auna-mail-service-mockup:v1.0.0-node14"
+    ports:
+      - "3101:3101"
+      
