@@ -40,10 +40,10 @@ api:
     - name: "sample-internal-01"
       description: "Internal Api example"
       runtime:
-        image: ""  
+        image: ""
         type: "node-ts"
         version: "14"
-      host: "some.host"
+      host: "0.0.0.0"
       path: "apis/internal/sample-internal"
       port: "4001"
       env:
@@ -66,7 +66,7 @@ api:
         image: ""
         type: "node-ts"
         version: "14"
-      host: "some.host"
+      host: "0.0.0.0"
       path: "apis/external/sample-external"
       port: "4000"
       env:
@@ -85,9 +85,10 @@ api:
 cache : []
 tasks:
   - tasktag: "sample-task"
-    task: "curl --fail -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{}' 'http://sample-interal:4001/sample-task'"
     category: "examples"
     description: "Example process that runs at 18:30 every week day Monday to Friday"
     cron: "30 18 * * 1-5"
+    task: "curl --fail -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"message":"hello"}' 'http://sample-interal:4001/echo'"
+
 datasource: []
 env: []
