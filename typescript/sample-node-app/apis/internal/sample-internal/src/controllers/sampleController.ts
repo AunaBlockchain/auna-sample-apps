@@ -33,8 +33,22 @@ export const init = async (req: Request, res: Response) => {
 	return res.json(result);
 }
 
+export const ping = async (req: Request, res: Response) => {
+	const result = await model.callPing();
+	return res.json(result);
+}
+
 export const find = async (req: Request, res: Response) => {
 	const args = req.body.args || {};
 	const result = await model.callFind(args);
+	return res.json(result);
+}
+
+export const store = async (req: Request, res: Response) => {
+	const isin: string = req.body.isin;
+	const symbol: string = req.body.symbol;
+	const description: string = req.body.description;
+	const price: Number = req.body.price;
+	const result = await model.callStore(isin, symbol, description, price);
 	return res.json(result);
 }

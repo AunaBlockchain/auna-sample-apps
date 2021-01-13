@@ -26,17 +26,13 @@ import { FabricApiClient } from '@bcs/baas-hlf-client-cli';
 const logger = utils.getLogger('internal-api-sample-model');
 const client = new FabricApiClient({
 	clientConfig: '/usr/src/app/network/network.json',
-	user: '/usr/src/app/network/admin.json'
+	user: '/usr/src/app/network/admin.json',
+	endpointAddr: 'auna-hlf-client-service:3002'
 });
 
 /**
  * Exported Model Functions
  */
-
-export const initModel = async () => {
-	const result = await client.login();
-	return result.success;
-}
 
 export const echo = async (msg: string) => {
 	logger.info('Echo message: %s', msg);
@@ -54,6 +50,18 @@ export const callInit = async () => {
 	return result;
 }
 
+export const callPing = async () => {
+	logger.info('Calling test-go.ping()');
+	const result = await client.querySmartContract({
+		channelName: 'my-channel',
+		chaincodeName: 'test-go',
+		functionName: 'ping',
+		args: '',
+		queryAllPeers: false
+	});
+	return result;
+}
+
 export const callFind = async (args: any) => {
 	logger.info('Calling test-go.find()');
 	logger.info('Args: %s', args);
@@ -63,6 +71,26 @@ export const callFind = async (args: any) => {
 		functionName: 'init',
 		args: args,
 		queryAllPeers: false
+	});
+	return result;
+}
+
+export const callStore = async (isin: string, symbol: string, description: string, price: Number) => {
+	logger.info('Calling test-go.store()');
+
+	const args = {
+		ISIN: isin,
+		Symbol: symbol,
+		Description: description,
+		Price: price.toFixed(0)
+	};
+
+	const result = await client.invokeSmartContract({
+		channelName: 'my-channel',
+		chaincodeName: 'test-go',
+		functionName: 'init',
+		args: args,
+		waitForBlock: true
 	});
 	return result;
 }

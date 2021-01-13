@@ -47,7 +47,9 @@ export const setup = (root: string, app: Express) => {
 
 	router.post('/echo', asyncMiddleware(sampleController.echo));
 	router.post('/init', asyncMiddleware(sampleController.init));
+	router.post('/ping', asyncMiddleware(sampleController.ping));
 	router.post('/find', asyncMiddleware(sampleController.find));
+	router.post('/store', asyncMiddleware(sampleController.store));
 
 	router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 		logger.error(err);

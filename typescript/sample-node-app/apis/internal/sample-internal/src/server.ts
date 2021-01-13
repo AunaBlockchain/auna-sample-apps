@@ -45,9 +45,6 @@ app.use(bodyParser.urlencoded({
 	limit: '50mb'
 }));
 
-// Login the Fabric client
-sampleModel.initModel();
-
 //////////////////
 // Start Server //
 //////////////////

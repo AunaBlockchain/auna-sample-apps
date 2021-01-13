@@ -25,23 +25,36 @@ import { Request, Response } from 'express';
 import * as commons from '../models/commons';
 
 export const echo = async (req: Request, res: Response) => {
-    return res.json({ message: req.body.message });
+	return res.json({ message: req.body.message });
 }
 
 export const echoInternal = async (req: Request, res: Response) => {
-    console.log('Calling internal API');
-    const response = await axios.post(commons.config.apiInternalUrl + '/echo', { message: req.body.message });
-    return res.json(response);
+	console.log('Calling internal API');
+	const response = await axios.post(commons.config.apiInternalUrl + '/echo', { message: req.body.message });
+	return res.json(response);
 }
 
 export const init = async (req: Request, res: Response) => {
-    console.log('Calling internal API init()');
-    const response = await axios.post(commons.config.apiInternalUrl + '/init');
-    return res.json(response);
+	console.log('Calling internal API init()');
+	const response = await axios.post(commons.config.apiInternalUrl + '/init');
+	return res.json(response);
 }
 
 export const find = async (req: Request, res: Response) => {
-    console.log('Calling internal API find()');
-    const response = await axios.post(commons.config.apiInternalUrl + '/find', { args: req.body.args });
-    return res.json(response);
+	console.log('Calling internal API find()');
+	const response = await axios.post(commons.config.apiInternalUrl + '/find', { args: req.body.args });
+	return res.json(response);
+}
+
+export const store = async (req: Request, res: Response) => {
+	console.log('Calling internal API store()');
+	const args = {
+		isin: req.body.isin,
+		symbol: req.body.symbol,
+		description: req.body.description,
+		price: req.body.price
+	}
+
+	const response = await axios.post(commons.config.apiInternalUrl + '/store', args);
+	return res.json(response);
 }
