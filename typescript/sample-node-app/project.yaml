@@ -87,6 +87,6 @@ tasks:
     category: "examples"
     description: "Example process that runs at 18:30 every week day Monday to Friday"
     cron: "30 18 * * 1-5"
-    task: "curl --fail -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"message\":\"hello\"}' 'http://sample-interal:4001/echo'"
+    task: "curl --fail -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"message\":\"hello\"}' 'http://sample-interal-01:4001/echo'"
 datasource: []
 env: []

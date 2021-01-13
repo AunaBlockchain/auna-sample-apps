@@ -4,4 +4,4 @@ port: "4000"
 timeout: 240000
 root: "/"
 #
-apiInternalUrl: http://sample-internal:4001
+apiInternalUrl: http://sample-internal-01:4001
