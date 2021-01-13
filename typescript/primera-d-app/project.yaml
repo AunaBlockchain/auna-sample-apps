@@ -1,7 +1,7 @@
 ---
 application: 
-  id: "primera-d-app-isv" #Reemplaze por su identificador de ISV
-  name: "primera-d-app"
+  id: "primera-d-app-01" #Reemplaze por su identificador de ISV
+  name: "primera-d-app-01"
   description: "Example d-app with Typescript language"
   category: "d-app-auna-examples"
 network: 
