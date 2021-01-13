@@ -25,8 +25,8 @@ import { FabricApiClient } from '@bcs/baas-hlf-client-cli';
 
 const logger = utils.getLogger('internal-api-sample-model');
 const client = new FabricApiClient({
-	clientConfig: '/usr/src/app/network/network.yaml',
-	user: '/usr/src/app/network/admin.yaml'
+	clientConfig: '/usr/src/app/network/network.json',
+	user: '/usr/src/app/network/admin.json'
 });
 
 /**
