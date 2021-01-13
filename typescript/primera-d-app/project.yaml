@@ -23,8 +23,7 @@ network:
   peers: 
   - nodes: 2
     org: "bcs"
-smartcontracts: {}
-
+smartcontracts: []
 api:
     internal:
       - name: "api-int" #Nombre de la api interna
