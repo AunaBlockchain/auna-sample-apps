@@ -1,13 +1,13 @@
 application: 
-  id: sample-node-app-01
-  name: sample-node-app-01
-  description: Adi Node.js sample DApp
+  id: sample-node-app
+  name: sample-node-app
+  description: AunaBlockchain Node.js sample DApp
   category: examples
 network: 
-  id: sample-network-01
-  name: sample-network-01
+  id: sample-network
+  name: sample-network
   version: "2.0.0"
-  action: "some-action"
+  action: "exists"
   orderers: 
   - nodes: 1
     org: bcs-ordering
@@ -36,7 +36,7 @@ smartcontracts:
   type: golang
 api:
   internal:
-    - name: "sample-internal-01"
+    - name: "sample-internal"
       description: "Internal Api example"
       runtime:
         image: ""
@@ -57,9 +57,8 @@ api:
         enabled: false
         port: 8000
         endpoint: "/metrics"
-      permissions: []
   external:
-    - name: "sample-external-01"
+    - name: "sample-external"
       description: "External Api example"
       runtime:
         image: ""
@@ -80,13 +79,13 @@ api:
         enabled: false
         port: 8000
         endpoint: "/metrics"
-      permissions: []
 cache : []
 tasks:
   - tasktag: "sample-task"
     category: "examples"
     description: "Example process that runs at 18:30 every week day Monday to Friday"
     cron: "30 18 * * 1-5"
-    task: "curl --fail -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"message\":\"hello\"}' 'http://sample-interal-01:4001/echo'"
+    task: "curl --fail -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"message\":\"hello\"}' 'http://sample-interal:4001/echo'"
 datasource: []
 env: []
+permissions: []
