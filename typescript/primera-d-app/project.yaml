@@ -41,7 +41,7 @@ api:
       protocol: "HTTP" #Protocolo a utilizadar
       port: "4001"	
       host: "some.host"	
-      path: "apis/internal/sample-internal"	
+      path: "apis/internal/api-int"	
       description: "Internal Api example" #Descripción de la API interna
       runtime:	
         image: "example"	#Este campo permite indicar que se ocupe una imagen docker en vez de construir una a partír del código.
@@ -65,7 +65,7 @@ api:
       protocol: "HTTP"	
       port: "4000"	#Puerto de escucha de la API externa
       host: "0.0.0.0"	
-      path: "/apis/external/sample-external"	
+      path: "/apis/external/api-ext"	
       description: "External Api example"
       runtime:	
         image: "example"	
