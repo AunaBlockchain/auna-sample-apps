@@ -10,7 +10,7 @@ network:
   version: "1.0.0"
   action: "some-action"
   orderers: 
-    - nodes: 1
+    - nodes: 3
       org: "bcs-ordering"
       consensus: etcdraft
   channels: 
@@ -23,55 +23,70 @@ network:
   peers: 
   - nodes: 2
     org: "bcs"
-smartcontracts: []
+  chaincodes:
+  - smartcontract: test-go
+    channel: my-channel
+    orgs:
+    - bcs
+smartcontracts:
+- id: test-go
+  endorsement: '{"identities":[{"role":{"name":"member","mspId":"xxxMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "xxx" por identificador de isv, ejemplo: "mspId":"bcsMSP"
+  metadapath:
+  version: v1.0.0
+  path: smartcontracts/test-go
+  type: golang
 api:
-    internal:
-      - name: "api-int" #Nombre de la api interna
-        description: "Internal Api example" #Descripción de la API interna
-        runtime:
-          image: ""  #Este campo permite indicar que se ocupe una imagen docker en vez de construir una a partír del código.
-          type: "node-ts" #Indicar el runtime
-          version: "14"   #Indica la versión del runtime
-        host: "some.host" #Indica el host de la api
-        path: "apis/internal/api-int" #Ruta relativa hacia la API interna desde la carpeta Raiz del a D-App
-        port: "4002" #Puerto de escucha de la API interna
-        env: #Sección donde se puede definir variables de entorno para la API
-          - name: "SOME_VAR"
-            value: "someValue"
-        protocol: "http" #Protocolo a utilizadar
-        report: {}
-        tasks: {}
-        cache: {}
-        mailer: {}
-        metrics:
-          enabled: false
-          port: 8000
-          endpoint: "/metrics"
-        permissions: []
-    external: # Las API externas se configuran de igual que las APIs internas
-      - name: "api-ext"
-        description: "External Api example"
-        runtime:
-            image: ""  
-            type: "node-ts"
-            version: "14"
-        host: "some.host"
-        path: "apis/external/api-ext"
-        port: "4001" #Puerto de escucha de la API externa
-        env:
-          - name: "SOME_OTHER_VAR"
-            value: "anotherValue"
-        protocol: "http"
-        report: {}
-        tasks: {}
-        cache: {}
-        mailer: {}
-        metrics:
-          enabled: false
-          port: 8000
-          endpoint: "/metrics"
-        permissions: []
+  internal:
+    - name: "sample-internal-01" #Nombre de la api interna
+      protocol: "HTTP" #Protocolo a utilizadar
+      port: "4001"	
+      host: "some.host"	
+      path: "apis/internal/sample-internal"	
+      description: "Internal Api example" #Descripción de la API interna
+      runtime:	
+        image: "example"	#Este campo permite indicar que se ocupe una imagen docker en vez de construir una a partír del código.
+        type: "node-ts"	#Indicar el runtime
+        version: "14" #Indica la versión del runtime
+      env:
+        - name: "SOME_VAR"
+          value: "someValue"
+      report: {}	
+      tasks: []	
+      cache: []	
+      mailer: {}	
+      metrics:	
+        enabled: true	
+        port: 8000	
+        endpoint: "/metrics"	
+      singleton: true	
+      permissions: []
+  external: # Las API externas se configuran de igual que las APIs internas
+    - name: "sample-external-01"	
+      protocol: "HTTP"	
+      port: "4000"	#Puerto de escucha de la API externa
+      host: "0.0.0.0"	
+      path: "/apis/external/sample-external"	
+      description: "External Api example"
+      runtime:	
+        image: "example"	
+        type: "node"	
+        version: "14"
+      env:
+        - name: "SOME_OTHER_VAR"
+          value: "anotherValue"
+      report: {}	
+      tasks: []	
+      cache: []	
+      mailer: {}	
+      metrics:	
+        enabled: true	
+        port: 8000	
+        endpoint: "/metrics"	
+      singleton: true	
+      permissions: []
+  both: []
 cache: []
 tasks: []
 datasource: []
 env: []
+permissions: []

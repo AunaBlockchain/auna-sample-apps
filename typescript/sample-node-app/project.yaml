@@ -1,6 +1,6 @@
 application: 
-  id: sample-node-app
-  name: sample-node-app
+  id: xample-node-app
+  name: xample-node-app
   description: AunaBlockchain Node.js sample DApp
   category: examples
 network: 
@@ -9,7 +9,7 @@ network:
   version: "2.0.0"
   action: "exists"
   orderers: 
-  - nodes: 1
+  - nodes: 3
     org: bcs-ordering
     consensus: etcdraft
   channels: 
@@ -29,56 +29,61 @@ network:
     - bcs
 smartcontracts:
 - id: test-go
-  endorsement: '{"identities":[{"role":{"name":"member","mspId":"bcsMSP"}}],"policy":{"signed-by":0}}'
+  endorsement: '{"identities":[{"role":{"name":"member","mspId":"xxxMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "xxx" por identificador de isv, ejemplo: "mspId":"bcsMSP"
   metadapath:
   version: v1.0.0
   path: smartcontracts/test-go
   type: golang
 api:
   internal:
-    - name: "sample-internal"
+    - name: "sample-internal-01"
+      protocol: "HTTP"	
+      port: "4001"	
+      host: "0.0.0.0"	
+      path: "apis/internal/sample-internal"	
       description: "Internal Api example"
-      runtime:
-        image: ""
-        type: "node-ts"
+      runtime:	
+        image: "example"	
+        type: "node-ts"	
         version: "14"
-      host: "0.0.0.0"
-      path: "apis/internal/sample-internal"
-      port: "4001"
       env:
         - name: "SOME_VAR"
           value: "someValue"
-      protocol: "http"
-      report: {}
-      tasks: {}
-      cache: {}
-      mailer: {}
-      metrics:
-        enabled: false
-        port: 8000
-        endpoint: "/metrics"
+      report: {}	
+      tasks: []	
+      cache: []	
+      mailer: {}	
+      metrics:	
+        enabled: true	
+        port: 8000	
+        endpoint: "/metrics"	
+      singleton: true	
+      permissions: []
   external:
-    - name: "sample-external"
+    - name: "sample-external-01"	
+      protocol: "HTTP"	
+      port: "4000"	
+      host: "0.0.0.0"	
+      path: "/apis/external/sample-external"	
       description: "External Api example"
-      runtime:
-        image: ""
-        type: "node-ts"
+      runtime:	
+        image: "example"	
+        type: "node-ts"	
         version: "14"
-      host: "0.0.0.0"
-      path: "apis/external/sample-external"
-      port: "4000"
       env:
         - name: "SOME_OTHER_VAR"
           value: "anotherValue"
-      protocol: "http"
-      report: {}
-      tasks: {}
-      cache: {}
-      mailer: {}
-      metrics:
-        enabled: false
-        port: 8000
-        endpoint: "/metrics"
+      report: {}	
+      tasks: []	
+      cache: []	
+      mailer: {}	
+      metrics:	
+        enabled: true	
+        port: 8000	
+        endpoint: "/metrics"	
+      singleton: true	
+      permissions: []
+  both: []  
 cache : []
 tasks:
   - tasktag: "sample-task"

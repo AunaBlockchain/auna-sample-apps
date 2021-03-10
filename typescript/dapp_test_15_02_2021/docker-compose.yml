@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  api_ext:
+    container_name: gtd_api_ext
+    build: ./apis/external/api-ext
+    ports:
+      - "8001:8081"
+    volumes: 
+      - ./apis/external/api-ext:/usr/src/app/
+    environment: 
+      - PORT=8081
+      - INTERNAL_API_ADDRESS=api_int
+      - INTERNAL_API_PORT=8080
+  api_int:
+    container_name: gtd_api_int
+    build: ./apis/internal/api-int
+    ports:
+      - "8000:8080"
+    volumes: 
+      - ./apis/internal/api-int:/usr/src/app/
+    environment: 
+      - PORT=8080
+    
