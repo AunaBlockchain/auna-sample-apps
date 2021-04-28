@@ -68,7 +68,7 @@ export const callFind = async (args: any) => {
 	const result = await client.querySmartContract({
 		channelName: 'my-channel',
 		chaincodeName: 'test-go',
-		functionName: 'init',
+		functionName: 'find',
 		args: args,
 		queryAllPeers: false
 	});

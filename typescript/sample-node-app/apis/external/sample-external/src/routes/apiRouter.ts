@@ -48,6 +48,7 @@ export const setup = (root: string, app: Express) => {
 	router.post('/sample/echo', asyncMiddleware(sampleController.echo));
 	router.post('/sample/echo-internal', asyncMiddleware(sampleController.echoInternal));
 	router.post('/sample/init', asyncMiddleware(sampleController.init));
+	router.post('/sample/store', asyncMiddleware(sampleController.store));
 	router.post('/sample/find', asyncMiddleware(sampleController.find));
 
 	router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
