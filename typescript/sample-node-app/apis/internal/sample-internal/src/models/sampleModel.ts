@@ -85,10 +85,12 @@ export const callStore = async (isin: string, symbol: string, description: strin
 		Price: price.toFixed(0)
 	};
 
+	logger.info('Storing:', args);
+
 	const result = await client.invokeSmartContract({
 		channelName: 'my-channel',
 		chaincodeName: 'test-go',
-		functionName: 'init',
+		functionName: 'store',
 		args: args,
 		waitForBlock: true
 	});
