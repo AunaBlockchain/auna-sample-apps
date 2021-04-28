@@ -29,7 +29,7 @@ network:
     - bcs
 smartcontracts:
 - id: test-go
-  endorsement: '{"identities":[{"role":{"name":"member","mspId":"xxxMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "xxx" por identificador de isv, ejemplo: "mspId":"bcsMSP"
+  endorsement: '{"identities":[{"role":{"name":"member","mspId":"bcsMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "bcs" por identificador de isv, ejemplo: "mspId":"bcsMSP"
   metadapath:
   version: v1.0.0
   path: smartcontracts/test-go
@@ -37,51 +37,51 @@ smartcontracts:
 api:
   internal:
     - name: "sample-internal-01"
-      protocol: "HTTP"	
-      port: "4001"	
-      host: "0.0.0.0"	
-      path: "apis/internal/sample-internal"	
+      protocol: "HTTP"
+      port: "4001"
+      host: "0.0.0.0"
+      path: "apis/internal/sample-internal"
       description: "Internal Api example"
-      runtime:	
-        image: "example"	
-        type: "node-ts"	
+      runtime:
+        image: ""
+        type: "node-ts"
         version: "14"
       env:
         - name: "SOME_VAR"
           value: "someValue"
-      report: {}	
-      tasks: []	
-      cache: []	
-      mailer: {}	
-      metrics:	
-        enabled: true	
-        port: 8000	
-        endpoint: "/metrics"	
-      singleton: true	
+      report: {}
+      tasks: []
+      cache: []
+      mailer: {}
+      metrics:
+        enabled: true
+        port: 8000
+        endpoint: "/metrics"
+      singleton: true
       permissions: []
   external:
-    - name: "sample-external-01"	
-      protocol: "HTTP"	
-      port: "4000"	
-      host: "0.0.0.0"	
-      path: "/apis/external/sample-external"	
+    - name: "sample-external-01"
+      protocol: "HTTP"
+      port: "4000"
+      host: "0.0.0.0"
+      path: "/apis/external/sample-external"
       description: "External Api example"
-      runtime:	
-        image: "example"	
-        type: "node-ts"	
+      runtime:
+        image: ""
+        type: "node-ts"
         version: "14"
       env:
         - name: "SOME_OTHER_VAR"
           value: "anotherValue"
-      report: {}	
-      tasks: []	
-      cache: []	
-      mailer: {}	
-      metrics:	
-        enabled: true	
-        port: 8000	
-        endpoint: "/metrics"	
-      singleton: true	
+      report: {}
+      tasks: []
+      cache: []
+      mailer: {}
+      metrics:
+        enabled: true
+        port: 8000
+        endpoint: "/metrics"
+      singleton: true
       permissions: []
   both: []  
 cache : []
