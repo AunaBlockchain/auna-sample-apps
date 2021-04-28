@@ -1,6 +1,6 @@
 application: 
-  id: xample-node-app
-  name: xample-node-app
+  id: sample-node-app
+  name: sample-node-app
   description: AunaBlockchain Node.js sample DApp
   category: examples
 network: 
