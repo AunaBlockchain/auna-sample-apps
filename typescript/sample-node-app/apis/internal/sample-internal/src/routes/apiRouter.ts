@@ -17,15 +17,15 @@
 
 /**
  * @author Marco Alarcón
- * @description API router
+ * @description Expressjs API router
  */
 
 // Libs imports
+import { utils } from '@bcs/baas-common';
 import { Express, Request, Response, NextFunction, Router } from 'express';
-import winston from 'winston';
 import * as sampleController from '../controllers/sampleController';
 
-const logger = winston.createLogger({ level: 'debug' });
+const logger = utils.getLogger('internal-api-sample-router');
 
 export const setup = (root: string, app: Express) => {
 
@@ -46,10 +46,19 @@ export const setup = (root: string, app: Express) => {
 	});
 
 	router.post('/echo', asyncMiddleware(sampleController.echo));
-	router.post('/init', asyncMiddleware(sampleController.init));
-	router.post('/ping', asyncMiddleware(sampleController.ping));
-	router.post('/find', asyncMiddleware(sampleController.find));
-	router.post('/store', asyncMiddleware(sampleController.store));
+
+	router.post('/stock/init', asyncMiddleware(sampleController.initGoCC));
+	router.post('/stock/ping', asyncMiddleware(sampleController.pingGoCC));
+	router.post('/stock/find', asyncMiddleware(sampleController.findGoCC));
+	router.post('/stock/store', asyncMiddleware(sampleController.storeGoCC));
+
+	router.post('/customer/init', asyncMiddleware(sampleController.initNodeCC));
+	router.post('/customer/ping', asyncMiddleware(sampleController.pingNodeCC));
+	router.post('/customer/find', asyncMiddleware(sampleController.queryCustomersNodeCC));
+	router.post('/customer/all', asyncMiddleware(sampleController.queryAllCustomersNodeCC));
+	router.post('/customer/history', asyncMiddleware(sampleController.queryCustomerHistoryNodeCC));
+	router.post('/customer/store', asyncMiddleware(sampleController.createCustomerNodeCC));
+	router.post('/customer/add', asyncMiddleware(sampleController.addCustomerFundsNodeCC));
 
 	router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 		logger.error(err);

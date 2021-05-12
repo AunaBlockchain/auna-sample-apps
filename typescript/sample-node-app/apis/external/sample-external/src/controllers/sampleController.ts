@@ -37,27 +37,11 @@ export const echoInternal = async (req: Request, res: Response) => {
 	return res.json(response.data);
 }
 
-export const init = async (req: Request, res: Response) => {
-	logger.info('Calling internal API init()');
-	const response = await axios.post(commons.config.apiInternalUrl + '/init');
-	return res.json(response.data);
-}
-
-export const find = async (req: Request, res: Response) => {
-	logger.info('Calling internal API find()');
-	const response = await axios.post(commons.config.apiInternalUrl + '/find', { args: req.body.args });
-	return res.json(response.data);
-}
-
-export const store = async (req: Request, res: Response) => {
-	logger.info('Calling internal API store()');
-	const args = {
-		isin: req.body.isin,
-		symbol: req.body.symbol,
-		description: req.body.description,
-		price: req.body.price
-	}
-
-	const response = await axios.post(commons.config.apiInternalUrl + '/store', args);
+/**
+ * Reverse proxy forward any request to the internal API
+ */
+export const forward = async(req: Request, res: Response, model: string, method: string) => {
+	logger.info('Calling internal %s API %s()', model, method);
+	const response = await axios.post(`${commons.config.apiInternalUrl}/${model}/${method}`, req.body);
 	return res.json(response.data);
 }

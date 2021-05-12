@@ -27,6 +27,10 @@ network:
     channel: my-channel
     orgs:
     - bcs
+  - smartcontract: test-node
+    channel: my-channel
+    orgs:
+    - bcs
 smartcontracts:
 - id: test-go
   endorsement: '{"identities":[{"role":{"name":"member","mspId":"bcsMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "bcs" por identificador de isv, ejemplo: "mspId":"bcsMSP"
@@ -34,6 +38,12 @@ smartcontracts:
   version: v1.0.0
   path: smartcontracts/test-go
   type: golang
+- id: test-node
+  endorsement: '{"identities":[{"role":{"name":"member","mspId":"bcsMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "bcs" por identificador de isv, ejemplo: "mspId":"bcsMSP"
+  metadapath:
+  version: v1.0.0
+  path: smartcontracts/test-node
+  type: node
 api:
   internal:
     - name: "sample-internal-01"

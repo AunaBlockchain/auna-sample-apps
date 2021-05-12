@@ -38,3 +38,7 @@ packer compress -p .
 ```
 
 Finally, upload the application package to the AUNA ISV Portal
+
+## Next steps
+
+Check the README.md file in the `network` folder

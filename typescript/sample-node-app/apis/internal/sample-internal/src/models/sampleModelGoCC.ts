@@ -17,13 +17,15 @@
 
 /**
  * @author Marco Alarcón
- * @description Sample Internal API model
+ * @description Sample Internal API model, test-go chaincode calls
  */
 
 import { utils } from '@bcs/baas-common';
 import { FabricApiClient } from '@bcs/baas-hlf-client-cli';
 
-const logger = utils.getLogger('internal-api-sample-model');
+// AUNA SDK logger, if you don't have one use this
+const logger = utils.getLogger('internal-api-sample-model-gocc');
+// Initializing AUNA SDK Fabric client
 const client = new FabricApiClient({
 	clientConfig: '/usr/src/app/network/network.json',
 	user: '/usr/src/app/network/admin.json',
@@ -39,7 +41,10 @@ export const echo = async (msg: string) => {
 	return msg;
 }
 
-export const callInit = async () => {
+/**
+ * Invokes transaction init()
+ */
+export const init = async () => {
 	logger.info('Calling test-go.init()');
 	const result = await client.invokeSmartContract({
 		channelName: 'my-channel',
@@ -50,7 +55,10 @@ export const callInit = async () => {
 	return result;
 }
 
-export const callPing = async () => {
+/**
+ * Calls ping() in query mode
+ */
+export const ping = async () => {
 	logger.info('Calling test-go.ping()');
 	const result = await client.querySmartContract({
 		channelName: 'my-channel',
@@ -62,7 +70,11 @@ export const callPing = async () => {
 	return result;
 }
 
-export const callFind = async (args: any) => {
+/**
+ * Calls find() in query mode
+ * @param args a valid CouchDB selector object
+ */
+export const find = async (args: any) => {
 	logger.info('Calling test-go.find()');
 	logger.info('Args: %s', args);
 	const result = await client.querySmartContract({
@@ -75,14 +87,21 @@ export const callFind = async (args: any) => {
 	return result;
 }
 
-export const callStore = async (isin: string, symbol: string, description: string, price: Number) => {
+/**
+ * Invokes transaction store()
+ * @param isin ISIN code
+ * @param symbol Stock symbol
+ * @param description 
+ * @param price 
+ */
+export const store = async (isin: string, symbol: string, description: string, price: string) => {
 	logger.info('Calling test-go.store()');
 
 	const args = {
 		ISIN: isin,
 		Symbol: symbol,
 		Description: description,
-		Price: price.toFixed(0)
+		Price: price
 	};
 
 	logger.info('Storing:', args);

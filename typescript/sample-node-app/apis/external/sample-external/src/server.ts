@@ -19,7 +19,6 @@
 import express from 'express';
 import http from 'http';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import { utils } from '@bcs/baas-common';
 import * as commons from './models/commons';
 
@@ -27,9 +26,9 @@ import * as commons from './models/commons';
 // Init Application //
 //////////////////////
 commons.setup();
-const logger = utils.getLogger('sample-internal-api');
+const logger = utils.getLogger('sample-external-api');
 
-logger.info('Initializing Sample Interal API');
+logger.info('Initializing Sample External API');
 
 const app = express();
 
@@ -37,9 +36,9 @@ app.options('*', cors() as any);
 app.use(cors());
 
 // Support parsing of application/json type post data
-app.use(bodyParser.json({ limit: '50mb' }));
+app.use(express.json({ limit: '50mb' }));
 // Support parsing of application/x-www-form-urlencoded post data
-app.use(bodyParser.urlencoded({
+app.use(express.urlencoded({
 	extended: false,
 	limit: '50mb'
 }));

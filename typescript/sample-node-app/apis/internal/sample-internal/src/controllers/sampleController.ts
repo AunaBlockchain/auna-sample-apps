@@ -21,34 +21,80 @@
  */
 
 import { Request, Response } from 'express';
-import * as model from '../models/sampleModel';
+import * as modelGoCC from '../models/sampleModelGoCC';
+import * as modelNodeCC from '../models/sampleModelNodeCC';
 
-export const echo = async (req: Request, res: Response) => {
-	const msg = await model.echo(req.body.message);
+export const echo = (req: Request, res: Response) => {
+	const msg = req.body.message;
 	return res.json({ message: msg });
 }
 
-export const init = async (req: Request, res: Response) => {
-	const result = await model.callInit();
+// Golang-CC calls
+
+export const initGoCC = async (req: Request, res: Response) => {
+	const result = await modelGoCC.init();
 	return res.json(result);
 }
 
-export const ping = async (req: Request, res: Response) => {
-	const result = await model.callPing();
+export const pingGoCC = async (req: Request, res: Response) => {
+	const result = await modelGoCC.ping();
 	return res.json(result);
 }
 
-export const find = async (req: Request, res: Response) => {
+export const findGoCC = async (req: Request, res: Response) => {
 	const args = req.body.args || {};
-	const result = await model.callFind(args);
+	const result = await modelGoCC.find(args);
 	return res.json(result);
 }
 
-export const store = async (req: Request, res: Response) => {
+export const storeGoCC = async (req: Request, res: Response) => {
+	console.log(req.body);
 	const isin: string = req.body.isin;
 	const symbol: string = req.body.symbol;
 	const description: string = req.body.description;
-	const price: Number = req.body.price;
-	const result = await model.callStore(isin, symbol, description, price);
+	const price: string = req.body.price;
+	const result = await modelGoCC.store(isin, symbol, description, price);
+	return res.json(result);
+}
+
+// Node-CC calls
+
+export const initNodeCC = async (req: Request, res: Response) => {
+	const result = await modelNodeCC.init();
+	return res.json(result);
+}
+
+export const pingNodeCC = async (req: Request, res: Response) => {
+	const result = await modelNodeCC.ping();
+	return res.json(result);
+}
+
+export const queryCustomersNodeCC = async (req: Request, res: Response) => {
+	const args = req.body.args || {};
+	const result = await modelNodeCC.queryCustomers(args);
+	return res.json(result);
+}
+
+export const queryAllCustomersNodeCC = async (req: Request, res: Response) => {
+	const args = req.body.args || {};
+	const result = await modelNodeCC.queryAllCustomers(args);
+	return res.json(result);
+}
+
+export const queryCustomerHistoryNodeCC = async (req: Request, res: Response) => {
+	const args = req.body.args || {};
+	const result = await modelNodeCC.queryCustomerHistory(args);
+	return res.json(result);
+}
+
+export const createCustomerNodeCC = async (req: Request, res: Response) => {
+	const args = req.body.args || {};
+	const result = await modelNodeCC.createCustomer(args);
+	return res.json(result);
+}
+
+export const addCustomerFundsNodeCC = async (req: Request, res: Response) => {
+	const args = req.body.args || {};
+	const result = await modelNodeCC.addCustomerFunds(args);
 	return res.json(result);
 }

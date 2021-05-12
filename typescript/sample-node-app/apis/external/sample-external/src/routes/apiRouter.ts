@@ -21,18 +21,22 @@
  */
 
 // Libs imports
+import { utils } from '@bcs/baas-common';
 import { Express, Request, Response, NextFunction, Router } from 'express';
-import winston from 'winston';
 import * as sampleController from '../controllers/sampleController';
 
-const logger = winston.createLogger({level: 'debug'});
+const logger = utils.getLogger('sample-external-api-router');
 
 export const setup = (root: string, app: Express) => {
 
 	const asyncMiddleware = (fn: Function) =>
 		(req: Request, res: Response, next: NextFunction) => {
-			Promise.resolve(fn(req, res, next))
-				.catch(err => next(err));
+			Promise.resolve(fn(req, res, next)).catch(err => next(err));
+		};
+
+	const asyncMiddlewareFwd = (model: string, method: string) =>
+		(req: Request, res: Response, next: NextFunction) => {
+			Promise.resolve(sampleController.forward(req, res, model, method)).catch(err => next(err));
 		};
 
 	const router = Router();
@@ -45,11 +49,21 @@ export const setup = (root: string, app: Express) => {
 		res.send('pong');
 	});
 
-	router.post('/sample/echo', asyncMiddleware(sampleController.echo));
-	router.post('/sample/echo-internal', asyncMiddleware(sampleController.echoInternal));
-	router.post('/sample/init', asyncMiddleware(sampleController.init));
-	router.post('/sample/store', asyncMiddleware(sampleController.store));
-	router.post('/sample/find', asyncMiddleware(sampleController.find));
+	router.post('/echo', asyncMiddleware(sampleController.echo));
+	router.post('/echo-internal', asyncMiddleware(sampleController.echoInternal));
+
+	router.post('/stock/init', asyncMiddlewareFwd('stock', 'init'));
+	router.post('/stock/ping', asyncMiddlewareFwd('stock', 'ping'));
+	router.post('/stock/find', asyncMiddlewareFwd('stock', 'find'));
+	router.post('/stock/store', asyncMiddlewareFwd('stock', 'store'));
+
+	router.post('/customer/init', asyncMiddlewareFwd('customer', 'init'));
+	router.post('/customer/ping', asyncMiddlewareFwd('customer', 'ping'));
+	router.post('/customer/find', asyncMiddlewareFwd('customer', 'find'));
+	router.post('/customer/all', asyncMiddlewareFwd('customer', 'all'));
+	router.post('/customer/history', asyncMiddlewareFwd('customer', 'history'));
+	router.post('/customer/store', asyncMiddlewareFwd('customer', 'store'));
+	router.post('/customer/add', asyncMiddlewareFwd('customer', 'add'));
 
 	router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 		logger.error(err);
