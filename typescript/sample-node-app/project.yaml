@@ -1,61 +1,122 @@
-application: 
+# Application section
+application:
+  # Unique DApp ID
   id: sample-node-app
+  # DApp name under RFC 1123 Standard (https://tools.ietf.org/html/rfc1123). The name must:
+  # - contain at most 63 characters
+  # - contain only lowercase alphanumeric characters or '-'
+  # - start with an alphanumeric character
+  # - end with an alphanumeric character
   name: sample-node-app
+  # DApp description, max 100 characters
   description: AunaBlockchain Node.js sample DApp
+  # DApp category, max 30 characters
   category: examples
+
+# Blockchain Network section
 network: 
+  # Unique network ID
   id: sample-network
+  # Network name under RFC 1123 Standard
   name: sample-network
+  # Fabric Version
   version: "2.0.0"
+  # Action, for future manteinance use
   action: "exists"
-  orderers: 
+
+  # Orderers nodes subsection
+  orderers:
+    # Quantity of orderer nodes, positive integer
   - nodes: 3
+    # Orderer organization id (RFC 1123)
     org: bcs-ordering
+    # Consensus algorithm, for Fabric v2 can only be "etcdraft"
     consensus: etcdraft
-  channels: 
+
+  # Fabric Channels subsection, a list of one or more channels
+  channels:
+    # Channel name (RFC 1123)
   - channel: my-channel
+    # Participating organization list for the channel. Array of organization IDs
     orgs:
     - bcs
+
+  # Participating organizations subsection. List of organizations
   organizations:
+    # Organization ID
   - id: bcs
+    # Hosted, for future usage. Defaults true
     hosted: true
-  peers: 
+
+  # Peer nodes subsection. List of Peer nodes
+  peers:
+    # Quantity of peer nodes, positive integer
   - nodes: 2
+    # Owner organization of the peer nodes
     org: bcs
+
+  # Chaincodes subsections. Indicates which Smartcontract is installed in a specific Channel for a list of participating Organizations.
+  # The same Smartcontract can be installed in more than one Channel (repeating the configuration)
   chaincodes:
+    # Smartcontract ID (see "smartcontracts" section)
   - smartcontract: test-go
+    # Channel ID (see "channels" subsection)
     channel: my-channel
+    # Participating organization that will install the Smartcontract (see "organizations" and "peers" subsections)
     orgs:
     - bcs
+
   - smartcontract: test-node
     channel: my-channel
     orgs:
     - bcs
+
+# Smartcontracts section. Smartcontracts are managed as independent software components that can be instantiated multiple times in the blockchain network
 smartcontracts:
+  # Smartcontract ID (RFC 1123)
 - id: test-go
+  # Endorsement policy in JSON format. For examples, see: https://hyperledger.github.io/fabric-sdk-node/release-1.4/global.html#ChaincodeInstantiateUpgradeRequest__anchor
   endorsement: '{"identities":[{"role":{"name":"member","mspId":"bcsMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "bcs" por identificador de isv, ejemplo: "mspId":"bcsMSP"
+  # Metadata Path. If the Smartcontracts defines query indexes, this is the relative path (see "path" attribute) for the metadata folder
   metadapath:
+  # Version number in semver (semantic versioning) format
   version: v1.0.0
+  # Relative path for the Smartcontract sourcecode
   path: smartcontracts/test-go
+  # Runtime type. Values can be: golang, node (java not yet supported)
   type: golang
+
 - id: test-node
   endorsement: '{"identities":[{"role":{"name":"member","mspId":"bcsMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "bcs" por identificador de isv, ejemplo: "mspId":"bcsMSP"
   metadapath:
   version: v1.0.0
   path: smartcontracts/test-node
   type: node
+
+# API section. Here you define your stateless API components
 api:
+  # Interal APIs subsection. Internal APIs can access the blockchain network but are not externally accesibles
   internal:
+      # API name (RFC 1123)
     - name: "sample-internal-01"
       protocol: "HTTP"
+      # Exposed port (internal communitation with other API components)
       port: "4001"
+      # Exposed host (internal communitation with other API components, use 0.0.0.0 to listen to all IPs)
       host: "0.0.0.0"
+      # Optional: sourcecode path. If not defined, the "runtime.image" must not be empty
       path: "apis/internal/sample-internal"
+      # API description
       description: "Internal Api example"
+      # Runtime subsection
       runtime:
+        # Optional: Docker image full qualified name. If empty, the sourcecode path must have a valid value
         image: ""
+        # Optional: runtime type, if sourcecode is used
         type: "node-ts"
+        # Optional: runtime version, if sourcecode is used
         version: "14"
+      # Environment variables
       env:
         - name: "SOME_VAR"
           value: "someValue"
@@ -63,10 +124,15 @@ api:
       tasks: []
       cache: []
       mailer: {}
+      # Prometheus metrics scrapping
       metrics:
+        # Enable (true) / disable (false) custom metrics recollection
         enabled: true
+        # TCP port for metrics scrapping
         port: 8000
+        # Optional. HTTP endpoint for metrics scrapping (defaults to "/metrics")
         endpoint: "/metrics"
+      # API is deployed in singleton mode (true) or not (false, default)
       singleton: true
       permissions: []
   external:
@@ -93,14 +159,28 @@ api:
         endpoint: "/metrics"
       singleton: true
       permissions: []
-  both: []  
+  both: []
+
+# Fabric cache section
 cache : []
+
+# Tasks section. Used to define automated tasks to execute for the DApp
 tasks:
+    # Task ID (RFC 1123)
   - tasktag: "sample-task"
+    # Task category
     category: "examples"
+    # Task description
     description: "Example process that runs at 18:30 every week day Monday to Friday"
+    # Cron-format schedule for execution
     cron: "30 18 * * 1-5"
+    # Task command
     task: "curl --fail -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"message\":\"hello\"}' 'http://sample-interal:4001/echo'"
+
+# Internal persistent Datasource section. Used to define persistent databases for internal consumption
 datasource: []
+
 env: []
+
+# External access permission section
 permissions: []

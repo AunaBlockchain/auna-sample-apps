@@ -2,10 +2,11 @@
 
 ## Description
 
-Sample application done with Typescript. It includes:
+Sample application done mainly with Typescript. It includes:
 - A simple Golang-based Smartcontract with basic CRUD operations
-- An Internal Node.js API that connects to the Fabric network to operate with the smartcontract
-- An External Node.js API that expose the business functionality to be consumed
+- A simple Node.js-based Smartcontract with basic CRUD operations and history retrieval
+- An Internal Node.js Typescript API that connects to the Fabric network to operate with the smartcontract
+- An External Node.js Typescript API that expose the business functionality to be consumed
 
 ## Instructions
 
