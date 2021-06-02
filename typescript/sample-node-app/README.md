@@ -40,6 +40,36 @@ packer compress -p .
 
 Finally, upload the application package to the AUNA ISV Portal
 
+## Local test
+
+Check that the source code for the APIs is syntactically valid as Typescript.
+
+For the external API, use the following commands:
+```shell
+cd apis/external/sample-external
+# Install NPM modules with dev dependencies
+npm install --save-dev
+# Build the Node.js code from Typescript
+npm run build
+# Run the API
+node .
+```
+
+It will be running forever, until you kill the process with CTRL+C.
+
+For the internal API, use the following commands:
+```shell
+cd apis/internal/sample-internal
+# Install NPM modules with dev dependencies
+npm install --save-dev
+# Build the Node.js code from Typescript
+npm run build
+# Run the API
+node .
+```
+
+The internal API will crash in the initialization stage, since it requires a valid Fabric connection profile archive and a valid user file.
+
 ## Next steps
 
 Check the README.md file in the `network` folder
