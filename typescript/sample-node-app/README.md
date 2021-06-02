@@ -40,7 +40,7 @@ packer compress -p .
 
 Finally, upload the application package to the AUNA ISV Portal
 
-## Local test
+## Local test APIs
 
 Check that the source code for the APIs is syntactically valid as Typescript.
 
@@ -69,6 +69,27 @@ node .
 ```
 
 The internal API will crash in the initialization stage, since it requires a valid Fabric connection profile archive and a valid user file.
+
+## Local test Chaincodes
+
+Check that the source code for the APIs is syntactically and semantically valid as Golang.
+
+For the `test-go` chaincode, use the following commands:
+```shell
+cd smartcontracts/test-go
+go build
+```
+
+An executable file called `test-go` will be created if the code has no compile errors.
+
+For the `test-node` chaincode, use the following commands:
+```shell
+cd smartcontracts/test-node
+npm install
+npm run start
+```
+
+The Node.js smartcontract will try to connect to it's peer node and will fail immediately. Any other error indicates a sintaxis error in the code.
 
 ## Next steps
 
