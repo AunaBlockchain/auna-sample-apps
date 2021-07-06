@@ -22,6 +22,7 @@
 
 import { utils } from '@bcs/baas-common';
 import { FabricApiClient } from '@bcs/baas-hlf-client-cli';
+import * as commons from './commons';
 
 const logger = utils.getLogger('internal-api-sample-model-nodecc');
 const client = new FabricApiClient({
@@ -70,6 +71,12 @@ export const queryCustomers = async (args: any) => {
 	return result;
 }
 
+export const queryCustomersJ = async (args: any) => {
+	// Sample result conversion
+	const result = await queryCustomers(args);
+	return commons.chaincodeResultToJSON(result);
+}
+
 export const queryAllCustomers = async (args: any) => {
 	logger.info('Calling test-node.queryAllCustomers()');
 	logger.info('Args: %s', args);
@@ -81,6 +88,12 @@ export const queryAllCustomers = async (args: any) => {
 		queryAllPeers: false
 	});
 	return result;
+}
+
+export const queryAllCustomersJ = async (args: any) => {
+	// Sample result conversion
+	const result = await queryAllCustomers(args);
+	return commons.chaincodeResultToJSON(result);
 }
 
 export const queryCustomerHistory = async (args: any) => {

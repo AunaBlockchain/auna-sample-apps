@@ -50,12 +50,15 @@ export const setup = (root: string, app: Express) => {
 	router.post('/stock/init', asyncMiddleware(sampleController.initGoCC));
 	router.post('/stock/ping', asyncMiddleware(sampleController.pingGoCC));
 	router.post('/stock/find', asyncMiddleware(sampleController.findGoCC));
+	router.post('/stock/findJ', asyncMiddleware(sampleController.findJGoCC));
 	router.post('/stock/store', asyncMiddleware(sampleController.storeGoCC));
 
 	router.post('/customer/init', asyncMiddleware(sampleController.initNodeCC));
 	router.post('/customer/ping', asyncMiddleware(sampleController.pingNodeCC));
 	router.post('/customer/find', asyncMiddleware(sampleController.queryCustomersNodeCC));
+	router.post('/customer/findJ', asyncMiddleware(sampleController.queryCustomersJNodeCC));
 	router.post('/customer/all', asyncMiddleware(sampleController.queryAllCustomersNodeCC));
+	router.post('/customer/allJ', asyncMiddleware(sampleController.queryAllCustomersJNodeCC));
 	router.post('/customer/history', asyncMiddleware(sampleController.queryCustomerHistoryNodeCC));
 	router.post('/customer/store', asyncMiddleware(sampleController.createCustomerNodeCC));
 	router.post('/customer/add', asyncMiddleware(sampleController.addCustomerFundsNodeCC));

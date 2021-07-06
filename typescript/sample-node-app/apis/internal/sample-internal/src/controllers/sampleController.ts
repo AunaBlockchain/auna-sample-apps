@@ -47,6 +47,12 @@ export const findGoCC = async (req: Request, res: Response) => {
 	return res.json(result);
 }
 
+export const findJGoCC = async (req: Request, res: Response) => {
+	const args = req.body.args || {};
+	const result = await modelGoCC.findJ(args);
+	return res.json(result);
+}
+
 export const storeGoCC = async (req: Request, res: Response) => {
 	console.log(req.body);
 	const isin: string = req.body.isin;
@@ -75,9 +81,21 @@ export const queryCustomersNodeCC = async (req: Request, res: Response) => {
 	return res.json(result);
 }
 
+export const queryCustomersJNodeCC = async (req: Request, res: Response) => {
+	const args = req.body.args || {};
+	const result = await modelNodeCC.queryCustomersJ(args);
+	return res.json(result);
+}
+
 export const queryAllCustomersNodeCC = async (req: Request, res: Response) => {
 	const args = req.body.args || {};
 	const result = await modelNodeCC.queryAllCustomers(args);
+	return res.json(result);
+}
+
+export const queryAllCustomersJNodeCC = async (req: Request, res: Response) => {
+	const args = req.body.args || {};
+	const result = await modelNodeCC.queryAllCustomersJ(args);
 	return res.json(result);
 }
 

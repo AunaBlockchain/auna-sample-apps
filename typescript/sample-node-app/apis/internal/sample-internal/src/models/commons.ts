@@ -22,6 +22,7 @@
 
 // Libs imports
 import { utils } from '@bcs/baas-common';
+import { auna } from '@bcs/baas-protos';
 import path from 'path';
 
 // Config Interface
@@ -49,4 +50,28 @@ export const setup = (configPath?: string): Config => {
 	config = conf.get();
 
 	return config;
+}
+
+/**
+ * Converts the Chaincode result binary data to JSON. If the conversion is not possible, converts it to a plain String value
+ * @param data 
+ */
+export const chaincodeResultToJSON = (data: auna.hlf.IChaincodeResult) => {
+	let output;
+	if (data.output) {
+		const value = Buffer.from(data.output).toString('utf-8');
+		if (value) {
+			try {
+				output = JSON.parse(value);
+			} catch (e) {
+				output = value;
+			}
+		}
+	}
+	return {
+		message: data.message,
+		output: output,
+		success: data.success,
+		transactionId: data.transactionId
+	}
 }

@@ -22,6 +22,7 @@
 
 import { utils } from '@bcs/baas-common';
 import { FabricApiClient } from '@bcs/baas-hlf-client-cli';
+import * as commons from './commons';
 
 // AUNA SDK logger, if you don't have one use this
 const logger = utils.getLogger('internal-api-sample-model-gocc');
@@ -85,6 +86,16 @@ export const find = async (args: any) => {
 		queryAllPeers: false
 	});
 	return result;
+}
+
+/**
+ * Calls find() in query mode, return result as JSON
+ * @param args a valid CouchDB selector object
+ */
+export const findJ = async (args: any) => {
+	// Sample result conversion
+	const result = await find(args);
+	return commons.chaincodeResultToJSON(result);
 }
 
 /**
