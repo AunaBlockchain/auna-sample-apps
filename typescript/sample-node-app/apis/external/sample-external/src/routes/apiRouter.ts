@@ -42,7 +42,7 @@ export const setup = (root: string, app: Express) => {
 	const router = Router();
 
 	router.get('/', (req, res, next) => {
-		res.send('AUNA - Sample API');
+		res.send('AUNA - Sample API - v1.1');
 	});
 
 	router.get('/ping', (req, res, next) => {
@@ -67,6 +67,7 @@ export const setup = (root: string, app: Express) => {
 	router.post('/customer/history', asyncMiddlewareFwd('customer', 'history'));
 	router.post('/customer/store', asyncMiddlewareFwd('customer', 'store'));
 	router.post('/customer/add', asyncMiddlewareFwd('customer', 'add'));
+	router.post('/customer/email', asyncMiddlewareFwd('customer', 'email'));
 
 	router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 		logger.error(err);

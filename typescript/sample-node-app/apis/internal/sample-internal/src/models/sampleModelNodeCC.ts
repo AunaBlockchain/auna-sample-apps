@@ -22,14 +22,22 @@
 
 import { utils } from '@bcs/baas-common';
 import { FabricApiClient } from '@bcs/baas-hlf-client-cli';
+import { MailApiClient } from '@auna/auna-mailer-cli';
 import * as commons from './commons';
 
 const logger = utils.getLogger('internal-api-sample-model-nodecc');
+
+// AUNA SDK Fabric Client connector
 const client = new FabricApiClient({
-	clientConfig: '/usr/src/app/network/network.json',
-	user: '/usr/src/app/network/admin.json',
-	endpointAddr: 'auna-hlf-client-service:3002'
+	clientConfig: '/usr/src/app/network/network.json', // injected
+	user: '/usr/src/app/network/admin.json', // injected
+	endpointAddr: 'auna-hlf-client-service:3002' // fixed value
 });
+
+// AUNA SDK Mailer Connector
+const mailer = new MailApiClient({
+	endpointAddr: 'auna-mailer-service.auna-sdk-service:3000'
+})
 
 /**
  * Exported Model Functions
@@ -133,4 +141,28 @@ export const addCustomerFunds = async (args: any) => {
 		waitForBlock: true
 	});
 	return result;
+}
+
+/**
+ * Logic combination example. Calls the queryCustomerHistory method, then sends the results as an email
+ */
+export const sendHistoryByMail = async (rut: string, email: string) => {
+	if (!rut || !email) {
+		throw new Error('Invalid arguments');
+	}
+	logger.info('Retrieving historic info for %s', rut);
+	const result = await queryCustomerHistory([rut]);
+
+	logger.info('Sending email to %s', email);
+	const m = await mailer.sendMail({
+		from: 'test@aunablockchain.com',		// "from" email address (can be any address, is only for display)
+		replyTo: 'soporte@aunablockchain.com',	// "reply to" email address (should be a valid address)
+		subject: 'Cartola histórica ' + rut,	// "subject" to display
+		to: email,								// "to" email address (should be a valid address)
+		messageText: result.output?.toString(),	// plaintext body
+		messageHtml: result.output?.toString()	// optional HTML body
+	});
+
+	logger.info('Email sent: ', m);
+	return m;
 }

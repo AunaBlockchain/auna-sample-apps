@@ -62,6 +62,7 @@ export const setup = (root: string, app: Express) => {
 	router.post('/customer/history', asyncMiddleware(sampleController.queryCustomerHistoryNodeCC));
 	router.post('/customer/store', asyncMiddleware(sampleController.createCustomerNodeCC));
 	router.post('/customer/add', asyncMiddleware(sampleController.addCustomerFundsNodeCC));
+	router.post('/customer/email', asyncMiddleware(sampleController.sendHistoryByMailNodeCC));
 
 	router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 		logger.error(err);

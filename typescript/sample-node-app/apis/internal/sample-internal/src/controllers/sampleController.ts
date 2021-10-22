@@ -116,3 +116,10 @@ export const addCustomerFundsNodeCC = async (req: Request, res: Response) => {
 	const result = await modelNodeCC.addCustomerFunds(args);
 	return res.json(result);
 }
+
+export const sendHistoryByMailNodeCC = async (req: Request, res: Response) => {
+	const rut = req.body.rut || '';
+	const email = req.body.email || '';
+	const result = await modelNodeCC.sendHistoryByMail(rut, email);
+	return res.json(result);
+}
