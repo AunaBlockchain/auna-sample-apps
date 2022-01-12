@@ -1,13 +1,13 @@
 # Application section
 application:
   # Unique DApp ID
-  id: sample-node-app
+  id: sample-node-app-01
   # DApp name under RFC 1123 Standard (https://tools.ietf.org/html/rfc1123). The name must:
   # - contain at most 63 characters
   # - contain only lowercase alphanumeric characters or '-'
   # - start with an alphanumeric character
   # - end with an alphanumeric character
-  name: sample-node-app
+  name: sample-node-app-01
   # DApp description, max 100 characters
   description: AunaBlockchain Node.js sample DApp
   # DApp category, max 30 characters
@@ -80,7 +80,7 @@ smartcontracts:
   # Metadata Path. If the Smartcontracts defines query indexes, this is the relative path (see "path" attribute) for the metadata folder
   metadapath:
   # Version number in semver (semantic versioning) format
-  version: v1.1.0
+  version: v1.0.0
   # Relative path for the Smartcontract sourcecode
   path: smartcontracts/test-go
   # Runtime type. Values can be: golang, node (java not yet supported)
@@ -181,7 +181,18 @@ tasks:
     # Cron-format schedule for execution
     cron: "30 18 * * 1-5"
     # Task command
-    task: "curl --fail -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"message\":\"hello\"}' 'http://sample-interal:4001/echo'"
+    task: "curl --fail -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{\"message\":\"hello\"}' 'http://sample-internal:4001/echo'"
+
+    # Task ID (RFC 1123)
+  - tasktag: "sample-task-ping"
+    # Task category
+    category: "examples"
+    # Task description
+    description: "Example process that runs at every hour between 08:00 to 18:00, every week day Monday to Friday"
+    # Cron-format schedule for execution
+    cron: "0 8-18 * * 1-5"
+    # Task command
+    task: "curl --fail -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{}' 'http://sample-internal:4001/stock/ping'"
 
 # Internal persistent Datasource section. Used to define persistent databases for internal consumption
 datasource: []
