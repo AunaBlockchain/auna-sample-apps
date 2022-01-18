@@ -15,8 +15,6 @@ func main() {
 	user := args[1]     // Second arg, Username
 	password := args[2] // Third arg, Password
 
-	fmt.Println(args)
-
 	ctx := context.Background()
 	conf := oauth2.Config{
 		Endpoint: oauth2.Endpoint{
@@ -25,7 +23,7 @@ func main() {
 			AuthStyle: oauth2.AuthStyleInParams,
 		},
 		ClientID: clientID,
-		Scopes:   []string{"openid", "email", "profile", "roles"},
+		Scopes:   []string{"openid", "email", "profile", "roles"}, // add "offline_access" for an offline token with long expiry
 	}
 	token, err := conf.PasswordCredentialsToken(ctx, user, password)
 	if err != nil {

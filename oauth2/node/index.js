@@ -25,7 +25,7 @@ const main = async(clientId, username, password) => {
         accessTokenUri: 'https://sso.aunablockchain.com/auth/realms/auna/protocol/openid-connect/token',
         authorizationUri: 'https://sso.aunablockchain.com/auth/realms/auna/protocol/openid-connect/auth',
         clientId: clientId,
-        scopes: ['openid', 'email', 'profile', 'roles']
+        scopes: ['openid', 'email', 'profile', 'roles'] // add 'offline_access' for an offline token with long expiry
     });
 
     const token = await auth.owner.getToken(username, password);
