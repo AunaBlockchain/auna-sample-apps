@@ -12,7 +12,8 @@ Read the [AUNA Documentation](https://portal.aunablockchain.com/docs/) for more 
 
 ```shell
 root
-└─ typescript           # Typescript APIs samples
-   ├─ primera-d-app     # AUNA SDK components example
-   └─ sample-node-app   # AUNA Fabric Client and sample smartcontract calls
+└─ typescript                # Typescript APIs samples
+   ├─ primera-d-app          # AUNA SDK components example
+   ├─ sample-besu-node-app   # AUNA Besu Client and sample smartcontract calls
+   └─ sample-node-app        # AUNA Fabric Client and sample smartcontract calls
 ```
