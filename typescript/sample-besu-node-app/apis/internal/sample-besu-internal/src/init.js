@@ -49,8 +49,8 @@ export const initVars = async () => {
     let adm_json = JSON.parse(adm_data)
     let net_json = JSON.parse(net_data)
 
-    contractData  = Object.values(net_json).filter(function(item) {
-        return item.contractName == contractName
+    contractData  = Object.values(net_json.data).filter(function(item) {
+        return item.name == contractName
     });
     console.log('contractData:', contractData)
 
