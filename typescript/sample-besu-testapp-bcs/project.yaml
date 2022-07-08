@@ -1,0 +1,73 @@
+application:
+  id: testapp-bcs
+  name: testapp-bcs
+  description: testapp-bcs
+  category: d-app-auna-examples
+network:
+  name: testnet
+  protocol: Hyperledger Besu
+besuconfig:
+  consensus: IBFT 2.0
+  validators: 4
+smartcontracts:
+  - id: hello-world
+    endorsement: ''
+    metadapath: ''
+    version: v1.0.0
+    path: smartcontracts/hello-world
+    type: solidity:8.0
+api:
+  internal:
+    - name: testapp-internal
+      protocol: HTTP
+      port: '4000'
+      host: 0.0.0.0
+      path: apis/testapp-internal
+      description: TestApp Internal
+      runtime:
+        image: ''
+        type: node-ts
+        version: '16'
+      env: []
+      report: {}
+      tasks: []
+      cache: []
+      mailer: {}
+      metrics:
+        enabled: false
+        port: 8000
+        endpoint: /metrics
+      singleton: false
+      permissions: []
+      security:
+        enabled: false
+  external:
+    - name: testapp-external
+      protocol: HTTP
+      port: '4000'
+      host: 0.0.0.0
+      path: apis/testapp-external
+      description: TestApp External
+      runtime:
+        image: ''
+        type: node-ts
+        version: '16'
+      env: []
+      report: {}
+      tasks: []
+      cache: []
+      mailer: {}
+      metrics:
+        enabled: false
+        port: 8000
+        endpoint: /metrics
+      singleton: false
+      permissions: []
+      security:
+        enabled: true
+  both: []
+cache: []
+tasks: []
+datasource: []
+env: []
+permissions: []
