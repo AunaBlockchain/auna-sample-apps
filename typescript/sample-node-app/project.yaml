@@ -144,7 +144,7 @@ api:
       protocol: "HTTP"
       port: "4000"
       host: "0.0.0.0"
-      path: "/apis/external/sample-external"
+      path: "apis/external/sample-external"
       description: "External Api example"
       runtime:
         image: ""
@@ -158,13 +158,13 @@ api:
       cache: []
       mailer: {}
       metrics:
-        enabled: true
+        enabled: false
         port: 8000
         endpoint: "/metrics"
       singleton: true
       permissions: []
       security:
-        enabled: true
+        enabled: false
   both: []
 
 # Fabric cache section
