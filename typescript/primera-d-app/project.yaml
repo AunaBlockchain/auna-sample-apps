@@ -11,26 +11,26 @@ network:
   action: "some-action"
   orderers: 
     - nodes: 3
-      org: "bcs-ordering"
+      org: "_idisv_-ordering"
       consensus: etcdraft
   channels: 
   - channel: my-channel
     orgs:
-    - "bcs"
+    - "_idisv_"
   organizations:
-  - id: bcs
+  - id: _idisv_
     hosted: true
   peers: 
   - nodes: 2
-    org: "bcs"
+    org: "_idisv_"
   chaincodes:
   - smartcontract: test-go
     channel: my-channel
     orgs:
-    - bcs
+    - _idisv_
 smartcontracts:
 - id: test-go
-  endorsement: '{"identities":[{"role":{"name":"member","mspId":"xxxMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "xxx" por identificador de isv, ejemplo: "mspId":"bcsMSP"
+  endorsement: '{"identities":[{"role":{"name":"member","mspId":"_idisv_MSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "_idsisv_" por identificador de isv, ejemplo: "mspId":"aunaMSP"
   metadapath:
   version: v1.0.0
   path: smartcontracts/test-go
@@ -40,11 +40,11 @@ api:
     - name: "sample-internal-01" #Nombre de la api interna
       protocol: "HTTP" #Protocolo a utilizadar
       port: "4001"	
-      host: "some.host"	
+      host: "0.0.0.0"	
       path: "apis/internal/api-int"	
       description: "Internal Api example" #Descripción de la API interna
       runtime:	
-        image: "example"	#Este campo permite indicar que se ocupe una imagen docker en vez de construir una a partír del código.
+        image: ""	#Este campo permite indicar que se ocupe una imagen docker en vez de construir una a partír del código.
         type: "node-ts"	#Indicar el runtime
         version: "14" #Indica la versión del runtime
       env:
@@ -68,12 +68,12 @@ api:
       path: "/apis/external/api-ext"	
       description: "External Api example"
       runtime:	
-        image: "example"	
+        image: ""	
         type: "node"	
         version: "14"
       env:
         - name: "SOME_OTHER_VAR"
-          value: "anotherValue"
+          value: "someAnotherValue"
       report: {}	
       tasks: []	
       cache: []	
