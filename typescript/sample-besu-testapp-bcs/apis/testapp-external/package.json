@@ -4,7 +4,7 @@
     "description": "TestApp External",
     "main": "./dist/server.js",
     "dependencies": {
-        "@bcs/baas-common": "^1.0.0",
+        "@auna/auna-common": "^1.0.0",
         "axios": "^0.27.2",
         "cors": "^2.8.5",
         "express": "^4.18.1",

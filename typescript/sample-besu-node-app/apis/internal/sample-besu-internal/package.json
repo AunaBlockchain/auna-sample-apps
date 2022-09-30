@@ -15,14 +15,14 @@
     "Sample"
   ],
   "dependencies": {
+    "@auna/auna-common": "^1.0.0",
+    "@auna/auna-hlf-client-cli": "^1.0.0",
     "@auna/auna-mailer-cli": "^1.0.0",
-    "@bcs/baas-common": "^1.0.0",
-    "@bcs/baas-hlf-client-cli": "^1.0.0",
-    "@bcs/baas-protos": "^1.0.0",
+    "@auna/auna-protos": "^1.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "winston": "^3.3.3",
-    "web3": "^3.0.0-rc.5"
+    "web3": "^3.0.0-rc.5",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

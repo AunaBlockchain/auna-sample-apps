@@ -15,7 +15,7 @@
     "Sample"
   ],
   "dependencies": {
-    "@bcs/baas-common": "^1.0.0",
+    "@auna/auna-common": "^1.0.0",
     "axios": "^0.21.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",

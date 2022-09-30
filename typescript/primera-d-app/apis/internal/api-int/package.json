@@ -48,12 +48,12 @@
     "!*/__tests__"
   ],
   "dependencies": {
-    "@bcs/baas-common": "^1.0.0",
-    "@bcs/auna-mailer-template-cli": "^1.0.0",
-    "@bcs/auna-report-template-cli": "^1.0.0",
-    "@bcs/baas-report-cli": "^1.0.0",
-    "@bcs/baas-mailer-cli": "^1.0.0",
-    "@bcs/baas-protos": "^1.0.0",
+    "@auna/auna-common": "^1.0.0",
+    "@auna/auna-mailer-cli": "^1.0.0",
+    "@auna/auna-mailer-template-cli": "^1.0.0",
+    "@auna/auna-protos": "^1.0.0",
+    "@auna/auna-report-cli": "^1.0.0",
+    "@auna/auna-report-template-cli": "^1.0.0",
     "@loopback/boot": "^5.0.3",
     "@loopback/core": "^4.0.3",
     "@loopback/repository": "^5.0.3",
@@ -65,11 +65,11 @@
   },
   "devDependencies": {
     "@loopback/build": "^9.0.3",
-    "source-map-support": "^0.5.21",
+    "@loopback/eslint-config": "^13.0.3",
     "@loopback/testlab": "^5.0.3",
     "@types/node": "^14.18.26",
-    "@loopback/eslint-config": "^13.0.3",
     "eslint": "^8.22.0",
+    "source-map-support": "^0.5.21",
     "typescript": "~4.7.4"
   }
 }
