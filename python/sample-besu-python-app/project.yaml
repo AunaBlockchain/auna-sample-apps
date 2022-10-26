@@ -1,0 +1,88 @@
+application:
+  id: appbesu000-bcs
+  name: appbesu000
+  description: Generated app
+  category: d-app-auna-examples
+network:
+  protocol: Hyperledger Besu
+besuconfig:
+  consensus: IBFT 2.0
+  validators: 4
+smartcontracts:
+  - id: firstapp000
+    endorsement: "undefined"
+    metadatapath: "undefined"
+    version: v1.0.0
+    path: "smartcontracts"
+    type: "solidity:8.5"
+api:
+  # Interal APIs subsection. Internal APIs can access the blockchain network but are not externally accesibles
+  internal:
+      # API name (RFC 1123)
+    - name: "internal"
+      protocol: "HTTP"
+      # Exposed port (internal communitation with other API components)
+      port: "4001"
+      # Exposed host (internal communitation with other API components, use 0.0.0.0 to listen to all IPs)
+      host: "0.0.0.0"
+      # Optional: sourcecode path. If not defined, the "runtime.image" must not be empty
+      path: "apis/internal/python-besu-internal"
+      # API description
+      description: "Internal Besu Api example"
+      # Runtime subsection
+      runtime:
+        # Optional: Docker image full qualified name. If empty, the sourcecode path must have a valid value
+        image: ""
+        # Optional: runtime type, if sourcecode is used
+        type: "python"
+        # Optional: runtime version, if sourcecode is used
+        version: "3.10"
+      # Environment variables
+      env:
+        - name: "SOME_VAR"
+          value: "someValue"
+      report: {}
+      tasks: []
+      cache: []
+      mailer: {}
+      # Prometheus metrics scrapping
+      metrics:
+        # Enable (true) / disable (false) custom metrics recollection
+        enabled: true
+        # TCP port for metrics scrapping
+        port: 8000
+        # Optional. HTTP endpoint for metrics scrapping (defaults to "/metrics")
+        endpoint: "/metrics"
+      # API is deployed in singleton mode (true) or not (false, default)
+      singleton: true
+      # AUNA Single Sign-on module
+      security:
+        # Enable/disable request authenticator (default: false)
+        enabled: false
+      permissions: []
+  external:
+    - name: "external"
+      protocol: "HTTP"
+      port: "4000"
+      host: "0.0.0.0"
+      path: "/apis/external/python-besu-external"
+      description: "External Besu Api example"
+      runtime:
+        image: ""
+        type: "python"
+        version: "3.10"
+      env:
+        - name: "SOME_OTHER_VAR"
+          value: "anotherValue"
+      report: {}
+      tasks: []
+      cache: []
+      mailer: {}
+      metrics:
+        enabled: true
+        port: 8000
+        endpoint: "/metrics"
+      singleton: true
+      permissions: []
+      security:
+        enabled: false
