@@ -19,7 +19,7 @@
 import express from 'express';
 import http from 'http';
 import cors from 'cors';
-import { utils } from '@bcs/baas-common';
+import { utils } from '@auna/auna-common';
 import * as commons from './models/commons';
 
 //////////////////////

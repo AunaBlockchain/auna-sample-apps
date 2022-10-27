@@ -20,7 +20,7 @@
  * @description Sample Router controller
  */
 
-import { utils } from '@bcs/baas-common';
+import { utils } from '@auna/auna-common';
 import axios from 'axios';
 import { Request, Response } from 'express';
 import * as commons from '../models/commons';

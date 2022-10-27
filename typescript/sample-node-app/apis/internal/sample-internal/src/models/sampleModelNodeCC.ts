@@ -20,8 +20,8 @@
  * @description Sample Internal API model
  */
 
-import { utils } from '@bcs/baas-common';
-import { FabricApiClient } from '@bcs/baas-hlf-client-cli';
+import { utils } from '@auna/auna-common';
+import { FabricApiClient } from '@auna/auna-hlf-client-cli';
 import { MailApiClient } from '@auna/auna-mailer-cli';
 import * as commons from './commons';
 

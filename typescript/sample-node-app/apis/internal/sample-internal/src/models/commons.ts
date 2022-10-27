@@ -21,8 +21,8 @@
  */
 
 // Libs imports
-import { utils } from '@bcs/baas-common';
-import { auna } from '@bcs/baas-protos';
+import { utils } from '@auna/auna-common';
+import { auna } from '@auna/auna-protos';
 import path from 'path';
 
 // Config Interface

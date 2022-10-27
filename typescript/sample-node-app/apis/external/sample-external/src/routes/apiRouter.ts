@@ -21,7 +21,7 @@
  */
 
 // Libs imports
-import { utils } from '@bcs/baas-common';
+import { utils } from '@auna/auna-common';
 import { Express, Request, Response, NextFunction, Router } from 'express';
 import * as sampleController from '../controllers/sampleController';
 

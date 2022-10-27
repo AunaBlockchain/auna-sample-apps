@@ -20,8 +20,8 @@
  * @description Sample Internal API model, test-go chaincode calls
  */
 
-import { utils } from '@bcs/baas-common';
-import { FabricApiClient } from '@bcs/baas-hlf-client-cli';
+import { utils } from '@auna/auna-common';
+import { FabricApiClient } from '@auna/auna-hlf-client-cli';
 import * as commons from './commons';
 
 // AUNA SDK logger, if you don't have one use this
