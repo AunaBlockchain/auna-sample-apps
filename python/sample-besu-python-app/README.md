@@ -10,16 +10,16 @@ In order to define a python API, the following settings must be defined in 'proj
     runtime.type = python
 ```
 
-1. Python's version has to be properly defined (>= 3.0) as follows
+2. Python's version has to be properly defined (>= 3.0) as follows
 ```
     runtime.version = 3.10
 ```
 
-1. name of the API should be the name of the main file (with **.py** extension)
+3. name of the API should be the name of the main file (with **.py** extension)
 
     In this example: internal, external
 
-1. **'requirements.txt'** file must be located in the root of the API code
+4. **'requirements.txt'** file must be located in the root of the API code
     In this example, the requirements file for the internal API is in **'apis/internal/python-besu-internal'** directory and contains:
 
 ```
