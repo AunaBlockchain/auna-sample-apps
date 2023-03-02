@@ -1,6 +1,6 @@
 # AUNA SDK Single SignOn examples
 
-AUNA OAuth2 integration examples. This samples explain how to call the generated OIDC provider for each DApp deployed in the AUNA ecosystem.
+AUNA OAuth2 integration examples. This sample explains how to call the generated OIDC provider for each DApp deployed in the AUNA ecosystem.
 
 ## Samples
 
