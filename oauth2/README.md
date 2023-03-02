@@ -4,7 +4,7 @@ AUNA OAuth2 integration examples. These samples explain how to call the generate
 
 ## Samples
 
-There are 2 sampples:
+There are 2 samples:
 - Go with the official OAuth2 package to generate access/refresh tokens and with GoResty as a REST client
 - Node with client-oauth2 to generate access/refresh tokens and with Axios as a REST client
 
