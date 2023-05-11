@@ -47,6 +47,13 @@ export const findGoCC = async (req: Request, res: Response) => {
 	return res.json(result);
 }
 
+export const historyGoCC = async (req: Request, res: Response) => {
+	const args = req.body.args || {};
+	const result = await modelGoCC.history(args);
+	return res.json(result);
+}
+
+
 export const findJGoCC = async (req: Request, res: Response) => {
 	const args = req.body.args || {};
 	const result = await modelGoCC.findJ(args);

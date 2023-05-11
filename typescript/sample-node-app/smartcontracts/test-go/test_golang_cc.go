@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
@@ -53,6 +54,8 @@ func (c *TestChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		return shim.Success([]byte("pong"))
 	case "find":
 		return c.find(stub, args[0])
+	case "history":
+		return c.history(stub, args[0])
 	case "store":
 		return c.store(stub, args[0])
 	}
@@ -119,6 +122,81 @@ func (c *TestChaincode) find(stub shim.ChaincodeStubInterface, jsonSnip string) 
 
 	outBytes := convertQueryResultsToJSONByteArray(results)
 	return shim.Success(outBytes)
+}
+
+// history returns the chain of StockSymbol against the WorldState and returns the results in JSON format.
+func (c *TestChaincode) history(stub shim.ChaincodeStubInterface, symbolId string) pb.Response {
+	logger.Infof("Beginning history call %s", symbolId)
+
+	resultsIterator, err := stub.GetHistoryForKey(symbolId)
+	if err != nil {
+		logger.Error(err)
+		return shim.Error("Error executing history")
+	}
+	defer resultsIterator.Close()
+
+	// Create a buffer to store the history data in JSON format
+	var buffer bytes.Buffer
+	buffer.WriteString("[")
+
+	// Set a flag to keep track of whether the first transaction has been added to the buffer
+	bArrayMemberAlreadyWritten := false
+
+	// Iterate over each transaction in the iterator
+	for resultsIterator.HasNext() {
+		// Get the next transaction and associated metadata
+		response, err := resultsIterator.Next()
+		if err != nil {
+			return shim.Error(err.Error())
+		}
+
+		// Add a comma before each transaction, except for the first one
+		if bArrayMemberAlreadyWritten == true {
+			buffer.WriteString(",")
+		}
+
+		// Add the transaction ID to the buffer in JSON format
+		buffer.WriteString("{\"TxId\":")
+		buffer.WriteString("\"")
+		buffer.WriteString(response.TxId)
+		buffer.WriteString("\"")
+
+		// Add the value of the key for the current transaction to the buffer in JSON format
+		buffer.WriteString(", \"Value\":")
+		if response.IsDelete {
+			// If the key was deleted, set the value to null
+			buffer.WriteString("null")
+		} else {
+			// If the key was not deleted, add the value to the buffer as a string
+			buffer.WriteString(string(response.Value))
+		}
+
+		// Add the timestamp of the transaction to the buffer in JSON format
+		buffer.WriteString(", \"Timestamp\":")
+		buffer.WriteString("\"")
+		buffer.WriteString(time.Unix(response.Timestamp.Seconds, int64(response.Timestamp.Nanos)).String())
+		buffer.WriteString("\"")
+
+		// Add a flag to indicate whether the key was deleted or not to the buffer in JSON format
+		buffer.WriteString(", \"IsDelete\":")
+		buffer.WriteString("\"")
+		buffer.WriteString(strconv.FormatBool(response.IsDelete))
+		buffer.WriteString("\"")
+
+		buffer.WriteString("}")
+
+		// Set the flag to true after the first transaction has been added to the buffer
+		bArrayMemberAlreadyWritten = true
+	}
+
+	buffer.WriteString("]")
+
+	// Return the history data in the buffer as a response
+	return pb.Response{
+		Status:  200,
+		Payload: buffer.Bytes(),
+		Message: "Query executed successfully",
+	}
 }
 
 // store stores the StockSymbol as either an insert or an update transaction

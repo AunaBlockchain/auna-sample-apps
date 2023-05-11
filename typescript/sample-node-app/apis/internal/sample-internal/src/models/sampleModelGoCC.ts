@@ -89,6 +89,23 @@ export const find = async (args: any) => {
 }
 
 /**
+ * Calls history() in query mode
+ * @param args a symbol ID
+ */
+export const history = async (args: any) => {
+	logger.info('Calling test-go.history()');
+	logger.info('Args: %s', args);
+	const result = await client.querySmartContract({
+		channelName: 'my-channel',
+		chaincodeName: 'test-go',
+		functionName: 'history',
+		args: args,
+		queryAllPeers: false
+	});
+	return result;
+}
+
+/**
  * Calls find() in query mode, return result as JSON
  * @param args a valid CouchDB selector object
  */

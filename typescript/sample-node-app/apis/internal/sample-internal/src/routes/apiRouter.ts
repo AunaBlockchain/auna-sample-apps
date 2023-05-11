@@ -52,6 +52,8 @@ export const setup = (root: string, app: Express) => {
 	router.post('/stock/find', asyncMiddleware(sampleController.findGoCC));
 	router.post('/stock/findJ', asyncMiddleware(sampleController.findJGoCC));
 	router.post('/stock/store', asyncMiddleware(sampleController.storeGoCC));
+	router.post('/stock/history', asyncMiddleware(sampleController.historyGoCC));
+	
 
 	router.post('/customer/init', asyncMiddleware(sampleController.initNodeCC));
 	router.post('/customer/ping', asyncMiddleware(sampleController.pingNodeCC));

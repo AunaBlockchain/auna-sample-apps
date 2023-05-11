@@ -57,6 +57,7 @@ export const setup = (root: string, app: Express) => {
 	router.post('/stock/find', asyncMiddlewareFwd('stock', 'find'));
 	router.post('/stock/findJ', asyncMiddlewareFwd('stock', 'findJ'));
 	router.post('/stock/store', asyncMiddlewareFwd('stock', 'store'));
+	router.post('/stock/history', asyncMiddlewareFwd('stock', 'history'));
 
 	router.post('/customer/init', asyncMiddlewareFwd('customer', 'init'));
 	router.post('/customer/ping', asyncMiddlewareFwd('customer', 'ping'));
