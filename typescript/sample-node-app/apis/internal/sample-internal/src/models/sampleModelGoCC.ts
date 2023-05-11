@@ -102,7 +102,7 @@ export const history = async (args: any) => {
 		args: args,
 		queryAllPeers: false
 	});
-	return result;
+	return  commons.chaincodeResultToJSON(result);
 }
 
 /**

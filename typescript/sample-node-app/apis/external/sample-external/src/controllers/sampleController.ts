@@ -43,8 +43,5 @@ export const echoInternal = async (req: Request, res: Response) => {
 export const forward = async(req: Request, res: Response, model: string, method: string) => {
 	logger.info('Calling internal %s API %s()', model, method);
 	const response = await axios.post(`${commons.config.apiInternalUrl}/${model}/${method}`, req.body);
-
-	const b = Buffer.from(response.data.output)
-	let out = {"success": response.data.success,"message": response.data.message,"output": b.toString(),"transactionId": response.data.transactionId}
-	return res.json(out);
+	return res.json(response.data);
 }
