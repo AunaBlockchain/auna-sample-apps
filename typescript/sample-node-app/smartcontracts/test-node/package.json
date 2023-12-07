@@ -1,5 +1,5 @@
 {
-  "name": "bcs_test",
+  "name": "auna_test",
   "version": "1.0.0",
   "description": "Test chaincode implemented in node.js",
   "engines": {

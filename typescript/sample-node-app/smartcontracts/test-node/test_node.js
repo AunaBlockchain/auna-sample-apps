@@ -16,7 +16,7 @@ const TestChaincode = class {
 	// The Init method is called when the Smart Contract is instantiated by the blockchain network
 	// Best practice is to have any Ledger initialization in separate function -- see initLedger()
 	async Init(stub) {
-		logger.info('=========== Instantiated bcs-test chaincode ===========');
+		logger.info('=========== Instantiated auna-test chaincode ===========');
 		return shim.success();
 	}
 

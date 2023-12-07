@@ -52,6 +52,6 @@ router.setup(commons.config.root, app);
 
 const server = http.createServer(app).listen(commons.config.port, commons.config.host);
 
-logger.info('BCS SL API Server started');
+logger.info('auna SL API Server started');
 logger.info('Listening at: [http://%s:%s%s]', commons.config.host, commons.config.port, commons.config.root);
 server.timeout = commons.config.timeout;

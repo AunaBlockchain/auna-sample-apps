@@ -16,7 +16,7 @@ Edit the `project.yaml` file for the attribute __smartcontracts[].endorsement__:
 ```yaml
 smartcontracts:
 - id: test-go
-  endorsement: '{"identities":[{"role":{"name":"member","mspId":"bcsMSP"}}],"policy":{"signed-by":0}}'
+  endorsement: '{"identities":[{"role":{"name":"member","mspId":"aunaMSP"}}],"policy":{"signed-by":0}}'
 ```
 Change the value of "mspId" for your own Organization ID MSP.
 
@@ -28,7 +28,7 @@ go mod vendor
 
 If you still don't have installed the AUNA Packer, do:
 ```shell
-npm i -g @bcs/auna-packer --@bcs:registry=https://npm.aunablockchain.com
+npm i -g @auna/auna-packer --@auna:registry=https://npm.aunablockchain.com
 ```
 
 Then, create the application package with:

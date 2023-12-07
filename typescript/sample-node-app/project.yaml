@@ -29,7 +29,7 @@ network:
     # Quantity of orderer nodes, positive integer
   - nodes: 3
     # Orderer organization id (RFC 1123)
-    org: bcs-ordering
+    org: auna-ordering
     # Consensus algorithm, for Fabric v2 can only be "etcdraft"
     consensus: etcdraft
 
@@ -39,12 +39,12 @@ network:
   - channel: my-channel
     # Participating organization list for the channel. Array of organization IDs
     orgs:
-    - bcs
+    - auna
 
   # Participating organizations subsection. List of organizations
   organizations:
     # Organization ID
-  - id: bcs
+  - id: auna
     # Hosted, for future usage. Defaults true
     hosted: true
 
@@ -53,7 +53,7 @@ network:
     # Quantity of peer nodes, positive integer
   - nodes: 2
     # Owner organization of the peer nodes
-    org: bcs
+    org: auna
 
   # Chaincodes subsections. Indicates which Smartcontract is installed in a specific Channel for a list of participating Organizations.
   # The same Smartcontract can be installed in more than one Channel (repeating the configuration)
@@ -64,19 +64,19 @@ network:
     channel: my-channel
     # Participating organization that will install the Smartcontract (see "organizations" and "peers" subsections)
     orgs:
-    - bcs
+    - auna
 
   - smartcontract: test-node
     channel: my-channel
     orgs:
-    - bcs
+    - auna
 
 # Smartcontracts section. Smartcontracts are managed as independent software components that can be instantiated multiple times in the blockchain network
 smartcontracts:
   # Smartcontract ID (RFC 1123)
 - id: test-go
   # Endorsement policy in JSON format. For examples, see: https://hyperledger.github.io/fabric-sdk-node/release-1.4/global.html#ChaincodeInstantiateUpgradeRequest__anchor
-  endorsement: '{"identities":[{"role":{"name":"member","mspId":"bcsMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "bcs" por identificador de isv, ejemplo: "mspId":"bcsMSP"
+  endorsement: '{"identities":[{"role":{"name":"member","mspId":"aunaMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "auna" por identificador de isv, ejemplo: "mspId":"aunaMSP"
   # Metadata Path. If the Smartcontracts defines query indexes, this is the relative path (see "path" attribute) for the metadata folder
   metadapath:
   # Version number in semver (semantic versioning) format
@@ -87,7 +87,7 @@ smartcontracts:
   type: golang
 
 - id: test-node
-  endorsement: '{"identities":[{"role":{"name":"member","mspId":"bcsMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "bcs" por identificador de isv, ejemplo: "mspId":"bcsMSP"
+  endorsement: '{"identities":[{"role":{"name":"member","mspId":"aunaMSP"}}],"policy":{"signed-by":0}}' #en el objeto roles, campo mspId, cambiar "auna" por identificador de isv, ejemplo: "mspId":"aunaMSP"
   metadapath:
   version: v1.0.0
   path: smartcontracts/test-node
